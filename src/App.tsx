@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IAppInputData } from "./types";
-import { Alert, AlertTitle, LinearProgress } from "@mui/material";
+import { Alert, LinearProgress } from "@mui/material";
+import DOMPurify from "dompurify";
 import useGetAxios from "./hooks/useGetAxios";
 
 interface IAppProps {
@@ -12,7 +13,7 @@ function App({ inputData }: IAppProps) {
   console.log(response);
 
   useEffect(() => {
-    response && setHtml(response);
+    response && setHtml(DOMPurify.sanitize(response));
   }, [response]);
 
   return (
