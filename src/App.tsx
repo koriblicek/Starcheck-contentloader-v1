@@ -10,7 +10,6 @@ interface IAppProps {
 function App({ inputData }: IAppProps) {
   const [html, setHtml] = useState<string>("");
   const { response, isLoading, error } = useGetAxios<string>(inputData.dataContentLink);
-  console.log(response);
 
   useEffect(() => {
     response && setHtml(DOMPurify.sanitize(response));
